@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cxvy6hh6my1tc"]
+[gd_scene load_steps=20 format=3 uid="uid://cxvy6hh6my1tc"]
 
 [ext_resource type="Texture2D" uid="uid://t0orphcjjgkt" path="res://Assets/Burb/Walk.png" id="2_xomyw"]
 [ext_resource type="Texture2D" uid="uid://t72jdcy8ymr8" path="res://Assets/Burb/Idle_Bag.png" id="3_2363p"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://caumulfx7whi6" path="res://Assets/Burb/burbfly2-bag.png" id="6_xphbw"]
 [ext_resource type="Texture2D" uid="uid://c4o8gyw7rm42" path="res://Assets/Burb/Idle.png" id="7_aoyxk"]
 [ext_resource type="Texture2D" uid="uid://c5iyq4i8lfrpl" path="res://Assets/Burb/Walk_Bag.png" id="8_80wja"]
+[ext_resource type="Texture2D" uid="uid://ce7crbrsi03n6" path="res://Assets/Burb/BurbIdle-food.png" id="9_acdhb"]
+[ext_resource type="Texture2D" uid="uid://cwcv6ir1l64r8" path="res://Assets/Burb/BurbWalk1-food.png" id="10_6liwj"]
 
 [sub_resource type="Animation" id="Animation_dfhai"]
 length = 0.001
@@ -155,11 +157,41 @@ tracks/1/keys = {
 "values": [1.5708]
 }
 
+[sub_resource type="Animation" id="Animation_i1iuh"]
+resource_name = "Walk_food"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Idle:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [ExtResource("9_acdhb"), ExtResource("10_6liwj")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.706787]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i4nlv"]
 _data = {
 "RESET": SubResource("Animation_dfhai"),
 "Walk": SubResource("Animation_37138"),
 "Walk_bag": SubResource("Animation_5eicl"),
+"Walk_food": SubResource("Animation_i1iuh"),
 "fly": SubResource("Animation_n6qkv"),
 "fly_bag": SubResource("Animation_f40ml")
 }
