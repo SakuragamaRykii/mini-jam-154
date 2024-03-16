@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ymv8oeirkns3"]
+
+[ext_resource type="Texture2D" uid="uid://b8va62dcyeqtd" path="res://Assets/real-factory.png" id="1_crucf"]
+
+[node name="Map" type="Sprite2D"]
+z_index = -1
+position = Vector2(240, 135)
+texture = ExtResource("1_crucf")

@@ -11,14 +11,23 @@ config_version=5
 [application]
 
 config/name="Mini Jam 154"
-run/main_scene="res://StartScene.tscn"
+run/main_scene="res://MainScene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 
 window/size/viewport_width=480
-window/size/viewport_height=270
+window/size/viewport_height=160
+window/stretch/mode="viewport"
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Transition"
+2d_physics/layer_3="Cat"
+2d_physics/layer_4="CatFood"
+2d_physics/layer_5="House"
 
 [rendering]
 

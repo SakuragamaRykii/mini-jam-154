@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ig8hu144hutv"]
+
+[ext_resource type="Texture2D" uid="uid://lenwudbkmcim" path="res://Assets/TUBE.png" id="1_6wj2i"]
+
+[node name="CatMaker" type="Sprite2D"]
+position = Vector2(383, 62)
+texture = ExtResource("1_6wj2i")
