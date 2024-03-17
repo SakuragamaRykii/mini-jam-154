@@ -47,6 +47,7 @@ ClickLocation={
 2d_physics/layer_4="CatFood"
 2d_physics/layer_5="House"
 2d_physics/layer_6="point"
+2d_physics/layer_7="station"
 
 [rendering]
 
