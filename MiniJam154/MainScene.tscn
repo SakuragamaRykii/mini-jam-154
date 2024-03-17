@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cw078nh644wr8"]
+[gd_scene load_steps=9 format=3 uid="uid://cw078nh644wr8"]
 
 [ext_resource type="PackedScene" uid="uid://ymv8oeirkns3" path="res://Factory/map.tscn" id="1_n061k"]
 [ext_resource type="PackedScene" uid="uid://ig8hu144hutv" path="res://Factory/cat_maker.tscn" id="2_idush"]
 [ext_resource type="PackedScene" uid="uid://blqmt2toohl2l" path="res://Factory/food_factory.tscn" id="3_dl3k1"]
 [ext_resource type="PackedScene" uid="uid://cxvy6hh6my1tc" path="res://burb.tscn" id="4_74c30"]
+[ext_resource type="Texture2D" uid="uid://cvr2dold6bn5a" path="res://Assets/Boxes/Catbox-Blue.png" id="5_ptr8j"]
+[ext_resource type="Texture2D" uid="uid://vs21isu45hs7" path="res://Assets/Boxes/Catbox-Green.png" id="6_525do"]
+[ext_resource type="Texture2D" uid="uid://c6msh62nrlqdj" path="res://Assets/Boxes/Catbox-Red.png" id="7_jcq4s"]
+[ext_resource type="Texture2D" uid="uid://cy67g0my28xq7" path="res://Assets/Houses/deliver-map.png" id="8_a180g"]
 
 [node name="Node2D" type="Sprite2D"]
 
@@ -18,3 +22,22 @@ visible = false
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("4_74c30")]
 position = Vector2(206, 125)
+
+[node name="Catbox-blue" type="Sprite2D" parent="."]
+position = Vector2(351, 87)
+texture = ExtResource("5_ptr8j")
+
+[node name="Catbox-green" type="Sprite2D" parent="."]
+position = Vector2(318, 88)
+texture = ExtResource("6_525do")
+
+[node name="Catbox-red" type="Sprite2D" parent="."]
+position = Vector2(280, 89)
+texture = ExtResource("7_jcq4s")
+
+[node name="Deliver-map" type="Sprite2D" parent="."]
+position = Vector2(720, 80)
+texture = ExtResource("8_a180g")
+
+[node name="Main_Camera" type="Camera2D" parent="."]
+position = Vector2(240, 80)
