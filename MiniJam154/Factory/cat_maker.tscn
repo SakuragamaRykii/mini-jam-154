@@ -1,7 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://ig8hu144hutv"]
+[gd_scene load_steps=4 format=3 uid="uid://ig8hu144hutv"]
 
 [ext_resource type="Texture2D" uid="uid://lenwudbkmcim" path="res://Assets/TUBE.png" id="1_6wj2i"]
+[ext_resource type="Script" path="res://Box Gen/cat_maker.gd" id="2_jwyh6"]
+[ext_resource type="PackedScene" uid="uid://b8x4mihdanfox" path="res://Box Gen/BoX.tscn" id="3_tvalf"]
 
 [node name="CatMaker" type="Sprite2D"]
 position = Vector2(383, 62)
 texture = ExtResource("1_6wj2i")
+script = ExtResource("2_jwyh6")
+
+[node name="Box" parent="." instance=ExtResource("3_tvalf")]
+visible = false
+position = Vector2(1, 26)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
