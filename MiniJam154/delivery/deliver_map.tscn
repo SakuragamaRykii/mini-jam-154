@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://3cktmy7jabkk"]
+
+[ext_resource type="Texture2D" uid="uid://cy67g0my28xq7" path="res://Assets/Houses/deliver-map.png" id="1_ytccg"]
+[ext_resource type="Script" path="res://delivery/deliver_map.gd" id="2_y586i"]
+
+[node name="Deliver-map" type="Sprite2D"]
+z_index = -1
+position = Vector2(720, 80)
+texture = ExtResource("1_ytccg")
+script = ExtResource("2_y586i")

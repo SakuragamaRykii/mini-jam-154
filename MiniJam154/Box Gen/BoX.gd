@@ -1,19 +1,47 @@
 extends Sprite2D
-
-enum cOlour{rEd, bLue, gReen}
-var sTored_cOlour
-@onready var aNime = $AnimationPlayer
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+class_name Box
+enum COLOUR{RED, BLUE, GREEN}
+var currentColour
+@onready var anim = $AnimationPlayer
+var fed = false
+const maxHunger = 250
+var currentHunger = 250
+var hungerDecreaseTimer = 1
 func _process(delta):
-	if visible == true:
-		match sTored_cOlour:
-			cOlour.rEd:
-				aNime.play("Red_Idle")
-			cOlour.bLue:
-				aNime.play("Blue_Idle")
-			cOlour.gReen:
-				aNime.play("Green_Idle")
-		
+	if(fed):
+		if(hungerDecreaseTimer > 0):
+			hungerDecreaseTimer -= get_process_delta_time()
+		else:
+			hungerDecreaseTimer = 1
+			currentHunger -= 10
+			$hunger.value = currentHunger
+			if(currentHunger <= 0):
+				currentHunger = maxHunger
+				ChangeColour()
+				fed = false
+				visible = false
+				MainScene.KittenDies()
 	
-	pass
+
+func ChangeColour():
+	$hunger.visible = false
+	match currentColour:
+		COLOUR.RED:
+			anim.play("Red_Idle")
+		COLOUR.BLUE:
+			anim.play("Blue_Idle")
+		COLOUR.GREEN:
+			anim.play("Green_Idle")
+func Feed():
+	fed = true
+	$hunger.visible = true
+	currentHunger = maxHunger
+	match currentColour:
+		COLOUR.RED:
+			anim.play("Open_Red")
+		COLOUR.BLUE:
+			anim.play("Open_Blue")
+		COLOUR.GREEN:
+			anim.play("Open_Green")
+	
+

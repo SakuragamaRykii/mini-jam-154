@@ -1,82 +1,71 @@
-[gd_scene load_steps=13 format=3 uid="uid://blqmt2toohl2l"]
+[gd_scene load_steps=11 format=3 uid="uid://blqmt2toohl2l"]
 
 [ext_resource type="Texture2D" uid="uid://blflwjup6slsp" path="res://Assets/Food Factory.png" id="1_pjyym"]
 [ext_resource type="Script" path="res://Factory/food_factory.gd" id="2_56yo8"]
-[ext_resource type="Texture2D" uid="uid://h7tquf4kfdu" path="res://Assets/redHighlight.png" id="3_w4os2"]
 [ext_resource type="Texture2D" uid="uid://dr8duthctkpxw" path="res://Assets/Catfood full.png" id="4_cu6mv"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xk0as"]
-bg_color = Color(0, 0.482353, 0.215686, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tfgh2"]
+bg_color = Color(0.105882, 0.4, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eexnj"]
-bg_color = Color(0, 1, 0.376471, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0rrb"]
+bg_color = Color(0, 1, 0.396078, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yq6qy"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ls6gc"]
+size = Vector2(111, 64)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_py13g"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ubpvw"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_foq3m"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1mdc6"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43oan"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blpxe"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qnjyj"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjqtj"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahglc"]
-size = Vector2(98, 159)
 
 [node name="FoodFactory" type="Sprite2D"]
 position = Vector2(132, 80)
 texture = ExtResource("1_pjyym")
 script = ExtResource("2_56yo8")
 
-[node name="select" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, -16)
-scale = Vector2(3.5, 4)
-texture = ExtResource("3_w4os2")
-
 [node name="CatfoodFull" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 visible = false
-position = Vector2(32, 38)
+position = Vector2(33, 37)
 texture = ExtResource("4_cu6mv")
 
 [node name="LoadingBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
-offset_left = -28.0
-offset_top = -15.0
-offset_right = -24.0
-offset_bottom = 12.0
-scale = Vector2(7.35574, 0.209231)
-theme_override_styles/background = SubResource("StyleBoxFlat_xk0as")
-theme_override_styles/fill = SubResource("StyleBoxFlat_eexnj")
+offset_left = -32.0
+offset_top = -17.0
+offset_right = -28.0
+offset_bottom = 10.0
+scale = Vector2(9.46654, 0.279622)
+theme_override_styles/background = SubResource("StyleBoxFlat_tfgh2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_e0rrb")
 max_value = 1.0
 value = 0.4
 show_percentage = false
 
-[node name="Button" type="Button" parent="."]
-offset_left = -57.0
-offset_top = -79.0
-offset_right = -49.0
-offset_bottom = -71.0
-scale = Vector2(14.124, 16.0165)
-theme_override_styles/normal = SubResource("StyleBoxFlat_yq6qy")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ubpvw")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1mdc6")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_blpxe")
-theme_override_styles/focus = SubResource("StyleBoxFlat_qjqtj")
-
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_ahglc")
+position = Vector2(0.5, 48)
+shape = SubResource("RectangleShape2D_ls6gc")
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="Button" type="Button" parent="."]
+offset_left = -55.0
+offset_top = 57.0
+offset_right = -47.0
+offset_bottom = 65.0
+scale = Vector2(13.916, -16.9483)
+theme_override_styles/normal = SubResource("StyleBoxFlat_py13g")
+theme_override_styles/hover = SubResource("StyleBoxFlat_foq3m")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_43oan")
+theme_override_styles/focus = SubResource("StyleBoxFlat_qnjyj")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
