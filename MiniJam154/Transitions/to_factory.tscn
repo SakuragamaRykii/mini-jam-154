@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct7jq2kit0hsx"]
+
+[ext_resource type="PackedScene" uid="uid://c5vu5fjct5xhh" path="res://Transitions/to_deliver.tscn" id="1_dvwmu"]
+[ext_resource type="Script" path="res://Transitions/to_factory.gd" id="2_fk7qc"]
+
+[node name="Transition" instance=ExtResource("1_dvwmu")]
+position = Vector2(0, 0)
+script = ExtResource("2_fk7qc")

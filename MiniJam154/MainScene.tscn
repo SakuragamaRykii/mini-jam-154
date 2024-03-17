@@ -1,43 +1,72 @@
-[gd_scene load_steps=9 format=3 uid="uid://cw078nh644wr8"]
+[gd_scene load_steps=11 format=3 uid="uid://cw078nh644wr8"]
 
+[ext_resource type="Script" path="res://MainScene.gd" id="1_m56iq"]
 [ext_resource type="PackedScene" uid="uid://ymv8oeirkns3" path="res://Factory/map.tscn" id="1_n061k"]
 [ext_resource type="PackedScene" uid="uid://ig8hu144hutv" path="res://Factory/cat_maker.tscn" id="2_idush"]
 [ext_resource type="PackedScene" uid="uid://blqmt2toohl2l" path="res://Factory/food_factory.tscn" id="3_dl3k1"]
-[ext_resource type="PackedScene" uid="uid://cxvy6hh6my1tc" path="res://burb.tscn" id="4_74c30"]
-[ext_resource type="Texture2D" uid="uid://cvr2dold6bn5a" path="res://Assets/Boxes/Catbox-Blue.png" id="5_ptr8j"]
-[ext_resource type="Texture2D" uid="uid://vs21isu45hs7" path="res://Assets/Boxes/Catbox-Green.png" id="6_525do"]
-[ext_resource type="Texture2D" uid="uid://c6msh62nrlqdj" path="res://Assets/Boxes/Catbox-Red.png" id="7_jcq4s"]
+[ext_resource type="PackedScene" uid="uid://cxvy6hh6my1tc" path="res://BurbCode/burb.tscn" id="4_74c30"]
 [ext_resource type="Texture2D" uid="uid://cy67g0my28xq7" path="res://Assets/Houses/deliver-map.png" id="8_a180g"]
+[ext_resource type="PackedScene" uid="uid://c5vu5fjct5xhh" path="res://Transitions/to_deliver.tscn" id="9_kwlv2"]
+[ext_resource type="PackedScene" uid="uid://ct7jq2kit0hsx" path="res://Transitions/to_factory.tscn" id="10_mv2wf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qw4jj"]
+size = Vector2(20, 160)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ihw8"]
+size = Vector2(20, 211)
 
 [node name="Node2D" type="Sprite2D"]
+script = ExtResource("1_m56iq")
 
-[node name="Map" parent="." instance=ExtResource("1_n061k")]
-visible = false
+[node name="maps" type="Node" parent="."]
 
-[node name="Map2" parent="." instance=ExtResource("1_n061k")]
+[node name="Map2" parent="maps" instance=ExtResource("1_n061k")]
+
+[node name="Deliver-map" type="Sprite2D" parent="maps"]
+z_index = -1
+position = Vector2(720, 80)
+texture = ExtResource("8_a180g")
 
 [node name="CatMaker" parent="." instance=ExtResource("2_idush")]
 
 [node name="FoodFactory" parent="." instance=ExtResource("3_dl3k1")]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("4_74c30")]
-position = Vector2(206, 125)
+[node name="BURB" parent="." instance=ExtResource("4_74c30")]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(240, 115)
 
-[node name="Catbox-blue" type="Sprite2D" parent="."]
-position = Vector2(351, 87)
-texture = ExtResource("5_ptr8j")
-
-[node name="Catbox-green" type="Sprite2D" parent="."]
-position = Vector2(318, 88)
-texture = ExtResource("6_525do")
-
-[node name="Catbox-red" type="Sprite2D" parent="."]
-position = Vector2(280, 89)
-texture = ExtResource("7_jcq4s")
-
-[node name="Deliver-map" type="Sprite2D" parent="."]
-position = Vector2(720, 80)
-texture = ExtResource("8_a180g")
-
-[node name="Main_Camera" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
 position = Vector2(240, 80)
+
+[node name="Border" type="StaticBody2D" parent="."]
+visible = false
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border"]
+position = Vector2(-10, 80)
+shape = SubResource("RectangleShape2D_qw4jj")
+
+[node name="Border2" type="StaticBody2D" parent="."]
+visible = false
+position = Vector2(980, 0)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border2"]
+position = Vector2(-10, 80)
+shape = SubResource("RectangleShape2D_qw4jj")
+
+[node name="to_deliver" parent="." instance=ExtResource("9_kwlv2")]
+
+[node name="to_factory" parent="." instance=ExtResource("10_mv2wf")]
+position = Vector2(490, 101)
+
+[node name="destination" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="destination"]
+position = Vector2(0, 95.5)
+shape = SubResource("RectangleShape2D_3ihw8")
+
+[connection signal="body_entered" from="destination" to="." method="_on_destination_body_entered"]

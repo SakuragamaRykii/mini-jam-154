@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5vu5fjct5xhh"]
+
+[ext_resource type="Script" path="res://Transitions/to_deliver.gd" id="1_bgudu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_idhpr"]
+size = Vector2(20, 159)
+
+[node name="Transition" type="Area2D"]
+position = Vector2(462, 101)
+collision_layer = 2
+script = ExtResource("1_bgudu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -20.5)
+shape = SubResource("RectangleShape2D_idhpr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
