@@ -16,7 +16,7 @@ static func UpdateRep(value):
 	reputation += value
 
 	
-#@onready var ui = $CanvasLayer
+
 
 func _ready():
 	playerdest.position.x = player.position.x
@@ -31,6 +31,7 @@ func _physics_process(delta):
 		else:
 			player.velocity.x =  dir * 200
 	player.move_and_slide()
+	
 func _process(delta):
 	elapsedTime += get_process_delta_time()
 	$CanvasLayer/ElapsedTime.text = "Time: %d min %d seconds" %[elapsedTime as int/60
@@ -44,19 +45,21 @@ func CheckGO():
 		GameOver("You didn't value the lives of kittens")
 	elif(reputation < 0):
 		GameOver("Cats couldn't get a kitten to hug and aged to death")
+		
 @onready var screenDarken = $CanvasLayer/GameOver
 @onready var goText = $CanvasLayer/GameOver/Label
+
 func GameOver(reason):
 	screenDarken.visible = true
 	goText.text = """Game Over.
 	Reason: %s 
 	Total Score : %d""" %[reason, score]
 	set_physics_process(false)
-	pass
+	
 
 func _on_destination_body_entered(body):
 	body.velocity.x = 0
-	pass # Replace with function body.
+
 
 
 func _on_restart_pressed():
@@ -65,11 +68,11 @@ func _on_restart_pressed():
 	reputation = 0
 	score = 0
 	set_physics_process(true)
-	pass # Replace with function body.
+
 
 
 func _on_throw_pressed():
 	if(player.currentlyCarrying == player.CARRYING.CAT):
 		KittenDies()
 	player.currentlyCarrying = player.CARRYING.NONE
-	pass # Replace with function body.
+
